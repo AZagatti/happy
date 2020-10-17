@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton } from "react-native-gesture-handler";
 
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: { padding: 24 },
@@ -36,7 +36,7 @@ export const Input = styled.TextInput`
   height: 56px;
   padding: 18px 24px;
   margin-bottom: 16px;
-  text-align: initial top;
+  text-align-vertical: top;
 `;
 
 export const ImagesInput = styled.TouchableOpacity`
@@ -67,7 +67,7 @@ export const NextButton = styled(RectButton)`
   margin-top: 32px;
 `;
 
-export const NextButtonText = styled.View`
+export const NextButtonText = styled.Text`
   font-family: "Nunito_800ExtraBold";
   font-size: 16px;
   color: #fff;

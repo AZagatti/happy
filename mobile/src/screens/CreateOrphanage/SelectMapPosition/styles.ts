@@ -28,7 +28,7 @@ export const NextButton = styled(RectButton)`
   bottom: 40px;
 `;
 
-export const NextButtonText = styled.View`
+export const NextButtonText = styled.Text`
   font-family: "Nunito_800ExtraBold";
   font-size: 16px;
   color: #fff;

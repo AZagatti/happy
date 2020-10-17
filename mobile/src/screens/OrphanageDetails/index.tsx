@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 import { Marker } from "react-native-maps";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 
-import mapMarkerImg from "../images/map-marker.png";
+import mapMarkerImg from "../../images/mapMarker.png";
 
 import * as S from "./styles";
 
