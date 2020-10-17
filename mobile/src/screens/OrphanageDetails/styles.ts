@@ -1,13 +1,14 @@
 import { Dimensions } from "react-native";
 import styled, { css } from "styled-components/native";
 import MapView from "react-native-maps";
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton } from "react-native-gesture-handler";
 
 const { width } = Dimensions.get("window");
 
-interface GreenAndBlueProps {
+interface ColorsProps {
   blue?: boolean;
   green?: boolean;
+  red?: boolean;
 }
 
 export const Container = styled.ScrollView`
@@ -52,10 +53,10 @@ export const MapContainer = styled.View`
 
 export const Map = styled(MapView)`
   width: 100%;
-  height: 150;
+  height: 150px;
 `;
 
-export const RoutesContainer = styled.View`
+export const RoutesContainer = styled.TouchableOpacity`
   padding: 16px;
   align-items: center;
   justify-content: center;
@@ -79,7 +80,7 @@ export const ScheduleContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const ScheduleItem = styled.View<GreenAndBlueProps>`
+export const ScheduleItem = styled.View<ColorsProps>`
   width: 48%;
   padding: 20px;
   border-width: 1px;
@@ -96,9 +97,15 @@ export const ScheduleItem = styled.View<GreenAndBlueProps>`
       background-color: #edfff6;
       border-color: #a1e9c5;
     `}
+  ${({ red }) =>
+    red &&
+    css`
+      background-color: #f3f6f9;
+      border-color: #ffbcd9;
+    `}
 `;
 
-export const ScheduleText = styled.Text<GreenAndBlueProps>`
+export const ScheduleText = styled.Text<ColorsProps>`
   font-family: "Nunito_600SemiBold";
   font-size: 16px;
   line-height: 24px;
@@ -112,6 +119,11 @@ export const ScheduleText = styled.Text<GreenAndBlueProps>`
     green &&
     css`
       color: #37c77f;
+    `}
+    ${({ red }) =>
+    red &&
+    css`
+      color: #FF669D;
     `}
 `;
 

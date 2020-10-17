@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import { useNavigation } from "@react-navigation/native";
-import { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { Marker, PROVIDER_GOOGLE, MapEvent } from "react-native-maps";
 
 import mapMarker from "../../../images/mapMarker.png";
 
@@ -10,30 +10,44 @@ import * as S from "./styles";
 export default function SelectMapPosition() {
   const navigation = useNavigation();
 
-  function handleNextStep() {
-    navigation.navigate("OrphanageData");
-  }
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
+
+  const handleNextStep = useCallback(() => {
+    navigation.navigate("OrphanageData", { position });
+  }, [navigation, position]);
+
+  const handleSelectMapPosition = useCallback((e: MapEvent) => {
+    setPosition(e.nativeEvent.coordinate);
+  }, []);
 
   return (
     <S.Container>
       <S.Map
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: -27.2092052,
-          longitude: -49.6401092,
+          latitude: -22.3512794,
+          longitude: -48.772473,
           latitudeDelta: 0.008,
           longitudeDelta: 0.008,
         }}
+        onPress={handleSelectMapPosition}
       >
-        <Marker
-          icon={mapMarker}
-          coordinate={{ latitude: -27.2092052, longitude: -49.6401092 }}
-        />
+        {position.latitude !== 0 && (
+          <Marker
+            icon={mapMarker}
+            coordinate={{
+              latitude: position.latitude,
+              longitude: position.longitude,
+            }}
+          />
+        )}
       </S.Map>
 
-      <S.NextButton onPress={handleNextStep}>
-        <S.NextButtonText>Próximo</S.NextButtonText>
-      </S.NextButton>
+      {position.latitude !== 0 && (
+        <S.NextButton onPress={handleNextStep}>
+          <S.NextButtonText>Próximo</S.NextButtonText>
+        </S.NextButton>
+      )}
     </S.Container>
   );
 }
